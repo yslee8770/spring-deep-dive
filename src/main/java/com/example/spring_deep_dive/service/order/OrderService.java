@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -225,5 +227,74 @@ public class OrderService {
     public void callMandatoryWithoutTx(Long orderId) {
         logTx("callMandatoryWithoutTx (NO TX)");
         updateOrderStatus_mandatory(orderId); // 여기서 예외 터져야 함
+    }
+
+
+    /**
+     * 기본 LAZY + findAll()로 N+1을 일부러 터뜨리는 메서드
+     */
+    @Transactional(readOnly = true)
+    public void loadOrdersWithMemberAndLinesAndItems_NPlusOne() {
+        log.info("== [N+1] 주문 목록 조회 시작 ==");
+
+        List<Order> orders = orderRepository.findAll();
+        log.info("총 주문 수 = {}", orders.size());
+
+        for (Order order : orders) {
+            // LAZY: 여기서 member 쿼리 추가 발생
+            String memberName = order.getMember().getName();
+            log.info("orderId={}, memberName={}", order.getId(), memberName);
+
+            // LAZY: 여기서 order_line 쿼리 추가 발생
+            for (OrderLine line : order.getOrderLines()) {
+                // LAZY: 여기서 item 쿼리 추가 발생
+                String itemName = line.getItem().getName();
+                log.info("  orderLineId={}, itemName={}, qty={}",
+                        line.getId(), itemName, line.getOrderQuantity());
+            }
+        }
+        log.info("== [N+1] 주문 목록 조회 종료 ==");
+    }
+
+    @Transactional(readOnly = true)
+    public void loadOrdersWithFetchJoin() {
+        log.info("== [fetch-join] 주문 목록 조회 시작 ==");
+
+        List<Order> orders = orderRepository.findAllWithMemberAndLinesAndItemsFetchJoin();
+        log.info("총 주문 수 = {}", orders.size());
+
+        for (Order order : orders) {
+            String memberName = order.getMember().getName();
+            log.info("orderId={}, memberName={}", order.getId(), memberName);
+
+            for (OrderLine line : order.getOrderLines()) {
+                String itemName = line.getItem().getName();
+                log.info("  orderLineId={}, itemName={}, qty={}",
+                        line.getId(), itemName, line.getOrderQuantity());
+            }
+        }
+
+        log.info("== [fetch-join] 주문 목록 조회 종료 ==");
+    }
+
+    @Transactional(readOnly = true)
+    public void loadOrdersWithBatchSize() {
+        log.info("== [batch-size] 주문 목록 조회 시작 ==");
+
+        List<Order> orders = orderRepository.findAll();
+        log.info("총 주문 수 = {}", orders.size());
+
+        for (Order order : orders) {
+            String memberName = order.getMember().getName(); // Member LAZY + batch fetch
+            log.info("orderId={}, memberName={}", order.getId(), memberName);
+
+            for (OrderLine line : order.getOrderLines()) {
+                String itemName = line.getItem().getName();
+                log.info("  orderLineId={}, itemName={}, qty={}",
+                        line.getId(), itemName, line.getOrderQuantity());
+            }
+        }
+
+        log.info("== [batch-size] 주문 목록 조회 종료 ==");
     }
 }

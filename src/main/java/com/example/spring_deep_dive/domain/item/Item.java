@@ -78,4 +78,8 @@ public class Item extends BaseEntity {
     public void turnOff() {
         this.itemStatus = ItemStatus.OFF;
     }
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }
