@@ -11,6 +11,8 @@ import com.example.spring_deep_dive.respository.ItemRepository;
 import com.example.spring_deep_dive.respository.MemberRepository;
 import com.example.spring_deep_dive.respository.OrderRepository;
 import com.example.spring_deep_dive.respository.PaymentHistoryRepository;
+import com.example.spring_deep_dive.service.order.OrderService;
+import com.example.spring_deep_dive.service.order.OrderServiceFacade;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

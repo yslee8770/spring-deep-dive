@@ -2,6 +2,7 @@ package com.example.spring_deep_dive.service;
 
 import com.example.spring_deep_dive.domain.member.Member;
 import com.example.spring_deep_dive.respository.MemberRepository;
+import com.example.spring_deep_dive.service.member.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

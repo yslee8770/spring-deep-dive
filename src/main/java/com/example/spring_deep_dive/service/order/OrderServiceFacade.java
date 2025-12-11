@@ -1,4 +1,4 @@
-package com.example.spring_deep_dive.service;
+package com.example.spring_deep_dive.service.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

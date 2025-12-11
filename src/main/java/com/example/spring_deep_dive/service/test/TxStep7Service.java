@@ -1,4 +1,4 @@
-package com.example.spring_deep_dive.service;
+package com.example.spring_deep_dive.service.test;
 
 import com.example.spring_deep_dive.domain.member.Member;
 import com.example.spring_deep_dive.respository.MemberRepository;

@@ -1,4 +1,4 @@
-package com.example.spring_deep_dive.service;
+package com.example.spring_deep_dive.service.order;
 
 import com.example.spring_deep_dive.domain.item.Item;
 import com.example.spring_deep_dive.domain.member.Member;

@@ -2,6 +2,7 @@ package com.example.spring_deep_dive.service;
 
 import com.example.spring_deep_dive.domain.member.Member;
 import com.example.spring_deep_dive.respository.MemberRepository;
+import com.example.spring_deep_dive.service.test.TxStep7Service;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TxStep7Test {
 
     @Autowired MemberRepository memberRepository;
-    @Autowired TxStep7Service service;
+    @Autowired
+    TxStep7Service service;
 
     private Member newMember(String email, String name) {
         return memberRepository.save(Member.createUser(email,"test", name));
