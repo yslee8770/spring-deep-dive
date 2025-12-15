@@ -8,9 +8,8 @@
 - Order
 - OrderLine
 - PaymentHistory (트랜잭션 분리 실험용)
-
-도메인은 실험을 위한 최소 구조만 유지하며,  
-
+  
+도메인은 실험을 위한 최소 구조만 유지
 ---
 
 ## Spring Transaction Internals
