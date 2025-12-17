@@ -26,15 +26,42 @@ repositories {
 }
 
 dependencies {
+	implementation "com.querydsl:querydsl-jpa:5.1.0:jakarta"
+
+	annotationProcessor "com.querydsl:querydsl-apt:5.1.0:jakarta"
+	annotationProcessor "com.querydsl:querydsl-apt:5.1.0:jpa"
+
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+def generated = layout.buildDirectory.dir("generated/sources/annotationProcessor/java/main")
+
+sourceSets {
+	main {
+		java {
+			srcDirs += "$buildDir/generated/sources/annotationProcessor/java/main"
+		}
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.incremental = true
+	options.generatedSourceOutputDirectory = generated.get().asFile
 }
 
 tasks.named('test') {

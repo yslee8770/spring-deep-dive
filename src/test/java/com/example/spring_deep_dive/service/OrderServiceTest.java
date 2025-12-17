@@ -13,6 +13,7 @@ import com.example.spring_deep_dive.respository.OrderRepository;
 import com.example.spring_deep_dive.respository.PaymentHistoryRepository;
 import com.example.spring_deep_dive.service.order.OrderService;
 import com.example.spring_deep_dive.service.order.OrderServiceFacade;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,15 @@ class OrderServiceTest {
 
     @Autowired
     PaymentHistoryRepository paymentHistoryRepository;
+
+
+    @BeforeEach
+    void cleanUp() {
+        paymentHistoryRepository.deleteAll();
+        orderRepository.deleteAll();
+        itemRepository.deleteAll();
+        memberRepository.deleteAll();
+    }
 
     @Test
     void step1_selfInvocation_requiresNew_ignored() {

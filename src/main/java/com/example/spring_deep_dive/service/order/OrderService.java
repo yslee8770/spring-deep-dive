@@ -9,8 +9,10 @@ import com.example.spring_deep_dive.exception.OrderValidationException;
 import com.example.spring_deep_dive.respository.ItemRepository;
 import com.example.spring_deep_dive.respository.MemberRepository;
 import com.example.spring_deep_dive.respository.OrderRepository;
+import com.example.spring_deep_dive.respository.query.OrderQueryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,7 @@ public class OrderService {
     private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
     private final PaymentService paymentService;
+    private final OrderQueryRepository orderQueryRepository;
 
     // ============================================
     // Step1 핵심: REQUIRED 중첩 + self-invocation
@@ -296,5 +299,10 @@ public class OrderService {
         }
 
         log.info("== [batch-size] 주문 목록 조회 종료 ==");
+    }
+
+    public List<Order> findOrderPage(Pageable pageable) {
+        List<Long> ids = orderQueryRepository.findOrderIds(pageable);
+        return orderQueryRepository.findOrdersWithLines(ids);
     }
 }
