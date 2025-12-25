@@ -55,7 +55,6 @@ public class TxStep7Service {
         Member m = memberRepository.findById(memberId).orElseThrow();
         m.changeName("OUTER");
 
-        // 🔥 같은 클래스 말고 다른 빈의 REQUIRES_NEW 호출
         requiresNewService.innerRequiresNew(memberId);
 
         throw new RuntimeException("outer rollback");
