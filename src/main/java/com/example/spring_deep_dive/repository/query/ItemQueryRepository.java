@@ -1,4 +1,4 @@
-package com.example.spring_deep_dive.respository.query;
+package com.example.spring_deep_dive.repository.query;
 
 import com.example.spring_deep_dive.domain.item.Item;
 import com.example.spring_deep_dive.domain.item.QItem;

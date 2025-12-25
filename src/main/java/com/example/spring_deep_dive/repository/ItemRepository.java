@@ -1,4 +1,4 @@
-package com.example.spring_deep_dive.respository;
+package com.example.spring_deep_dive.repository;
 
 import com.example.spring_deep_dive.domain.item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;

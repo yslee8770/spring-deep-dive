@@ -1,9 +1,10 @@
-package com.example.spring_deep_dive.respository.query;
+package com.example.spring_deep_dive.repository.query;
 
 import com.example.spring_deep_dive.domain.member.Member;
 import com.example.spring_deep_dive.domain.order.Order;
-import com.example.spring_deep_dive.respository.MemberRepository;
-import com.example.spring_deep_dive.respository.OrderRepository;
+import com.example.spring_deep_dive.repository.MemberRepository;
+import com.example.spring_deep_dive.repository.OrderRepository;
+import com.example.spring_deep_dive.repository.query.OrderQueryRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,8 @@ class OrderQueryRepositoryTest {
 
     @Autowired MemberRepository memberRepository;
     @Autowired OrderRepository orderRepository;
-    @Autowired OrderQueryRepository orderQueryRepository;
+    @Autowired
+    OrderQueryRepository orderQueryRepository;
 
     Member m1;
     Member m2;

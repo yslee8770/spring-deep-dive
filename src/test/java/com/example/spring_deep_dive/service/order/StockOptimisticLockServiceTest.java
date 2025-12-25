@@ -2,8 +2,8 @@ package com.example.spring_deep_dive.service.order;
 
 import com.example.spring_deep_dive.domain.item.Item;
 import com.example.spring_deep_dive.domain.item.ItemStock;
-import com.example.spring_deep_dive.respository.ItemRepository;
-import com.example.spring_deep_dive.respository.ItemStockRepository;
+import com.example.spring_deep_dive.repository.ItemRepository;
+import com.example.spring_deep_dive.repository.ItemStockRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,7 @@
 package com.example.spring_deep_dive.service.order;
 
 import com.example.spring_deep_dive.domain.item.ItemStock;
-import com.example.spring_deep_dive.respository.ItemStockRepository;
+import com.example.spring_deep_dive.repository.ItemStockRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

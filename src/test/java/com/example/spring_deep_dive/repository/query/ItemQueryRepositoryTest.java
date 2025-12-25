@@ -1,10 +1,11 @@
-package com.example.spring_deep_dive.respository.query;
+package com.example.spring_deep_dive.repository.query;
 
 import com.example.spring_deep_dive.domain.item.Item;
 import com.example.spring_deep_dive.dto.ItemCategorySummaryDto;
 import com.example.spring_deep_dive.dto.ItemSearchCondition;
 import com.example.spring_deep_dive.dto.ItemSummaryDto;
-import com.example.spring_deep_dive.respository.ItemRepository;
+import com.example.spring_deep_dive.repository.ItemRepository;
+import com.example.spring_deep_dive.repository.query.ItemQueryRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,8 @@ import static org.assertj.core.groups.Tuple.tuple;
 class ItemQueryRepositoryTest {
 
     @Autowired ItemRepository itemRepository;
-    @Autowired ItemQueryRepository itemQueryRepository;
+    @Autowired
+    ItemQueryRepository itemQueryRepository;
 
     private Long appleId;
     private Long bananaId;
